@@ -126,7 +126,7 @@ const addComment = (id: number, content: string, replyingTo: string) => {
  }
 
   return (
-    <main className='h-full relative w-full flex justify-center items-center px-[25vw] mb-10'>
+    <main className='h-full relative w-full flex justify-center items-center px-5 sm:px-10 lg:px-20 xl:px-[25vw] mb-10'>
       <div aria-hidden='true'>
         <CommentWrapper comments={comments} addComment={addComment} voteComment={voteComment} deleteComment = {deleteComment} editComment={editComment}/>
       </div>

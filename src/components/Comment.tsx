@@ -36,23 +36,23 @@ const Comment = ({comment, addComment, voteComment, deleteComment, editComment}:
   }
   return (
     <>
-      <div role="comment" className="p-5 flex gap-5 items-center bg-(--White) rounded-lg mt-5">
+      <div role="comment" className="p-5 flex flex-col-reverse md:flex-row relative  gap-5 items-center bg-(--White) rounded-lg mt-5">
           <VoteButton onVote={handleVote} score={comment.score}/>
           <article className="w-full">
-            <div className="flex justify-between">
-              <header className="flex gap-5 items-center">
+            <div className="flex justify-between p">
+              <header className="flex gap-5 items-center flex-wrap sm:flex-nowrap">
                 <Avatar src={comment.user.image.webp} alt={comment.user.username}/>
                 <h1 className="font-semibold text-(--Dark-blue)">{comment.user.username}</h1>
                 {user.username == comment.user.username && <p className="px-2 text-(--White) bg-(--Moderate-blue)">You</p>}
-                <span className="text-(--Grayish-Blue)">{Number(comment.createdAt) ? timeAgo(Number(comment.createdAt)) : `${comment.createdAt}`}</span>
+                <span className="justify-self-end text-(--Grayish-Blue)">{Number(comment.createdAt) ? timeAgo(Number(comment.createdAt)) : `${comment.createdAt}`}</span>
               </header>
               {
                 comment.user.username == user.username
-                ? <div className="flex gap-5 items-center">
+                ? <div className="absolute bottom-5 right-5 md:static flex gap-5 items-center">
                     <span className="text-(--Soft-Red)" aria-hidden="true"><ActionButton onClick={() => setIsDeleting(true)} action="Delete" src="/images/icon-delete.svg"/></span>
                     <span className="text-(--Moderate-blue)" aria-hidden="true"><ActionButton onClick={() => setIsEditing(true)} action="Edit" src="/images/icon-edit.svg"/></span>
                   </div>
-                : <a className="text-(--Moderate-blue)" href="#new-comment"><ActionButton action="Reply" src="/images/icon-reply.svg" onClick={() => setIsReplying(!isReplying)}/></a>
+                : <a className="absolute bottom-5 right-5 md:static text-(--Moderate-blue)" href="#new-comment"><ActionButton action="Reply" src="/images/icon-reply.svg" onClick={() => setIsReplying(!isReplying)}/></a>
               }
               
             </div>
