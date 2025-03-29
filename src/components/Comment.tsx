@@ -7,6 +7,7 @@ import VoteButton from "./VoteButton"
 import ActionButton from "./ActionButton"
 import MakeEdit from "./MakeEdit"
 import { timeAgo } from "../helper"
+import DeleteModal from "./DeleteModal"
 
 
 const Comment = ({comment, addComment, voteComment, deleteComment, editComment}: {
@@ -49,10 +50,10 @@ const Comment = ({comment, addComment, voteComment, deleteComment, editComment}:
               {
                 comment.user.username == user.username
                 ? <div className="absolute bottom-5 right-5 md:static flex gap-5 items-center">
-                    <span className="text-(--Soft-Red)" aria-hidden="true"><ActionButton onClick={() => setIsDeleting(true)} action="Delete" src="/images/icon-delete.svg"/></span>
-                    <span className="text-(--Moderate-blue)" aria-hidden="true"><ActionButton onClick={() => setIsEditing(true)} action="Edit" src="/images/icon-edit.svg"/></span>
+                    <button onClick={() => setIsDeleting(true)} className="text-(--Soft-Red)"><ActionButton  action="Delete" src="/images/icon-delete.svg"/></button>
+                    <button  onClick={() => setIsEditing(true)}   className="text-(--Moderate-blue)"><ActionButton action="Edit" src="/images/icon-edit.svg"/></button>
                   </div>
-                : <a className="absolute bottom-5 right-5 md:static text-(--Moderate-blue)" href="#new-comment"><ActionButton action="Reply" src="/images/icon-reply.svg" onClick={() => setIsReplying(!isReplying)}/></a>
+                : <a onClick={() => setIsReplying(!isReplying)} className="absolute bottom-5 right-5 md:static text-(--Moderate-blue)" href="#new-comment"><ActionButton action="Reply" src="/images/icon-reply.svg" /></a>
               }
               
             </div>
@@ -80,21 +81,7 @@ const Comment = ({comment, addComment, voteComment, deleteComment, editComment}:
       }
       {
         isDeleting && 
-        <>
-        <div className="absolute top-0 left-0 h-[100vh] w-[100vw] bg-black opacity-30 z-10"/>
-        <div className="absolute top-0 z-10 left-0 h-[100vh] flex justify-center items-center w-[100vw] bg-(--Very-Dark-Blue)">
-          <div className="bg-(--White)  p-5 rounded-lg  flex flex-col items-center justify-center gap-5 w-[400px]">
-            <header>
-              <h1 className="text-(--Dark-blue) text-2xl font-bold mb-5">Delete Comment</h1>
-              <p>Are you sure you want to delete this comment? This would remove the comment and can't be undone.</p>
-            </header>
-            <div className="flex gap-2">
-              <button onClick={() => setIsDeleting(false)} className="bg-(--Grayish-Blue) text-(--White) cursor-pointer px-5 py-2 rounded-lg font-semibold">No, Cancel</button>
-              <button onClick={() => deleteComment(comment.id)} className="bg-(--Soft-Red) text-(--White) cursor-pointer px-5 py-2 rounded-lg font-semibold">Yes, Delete</button>
-            </div>
-          </div>
-        </div>
-      </>
+        <DeleteModal setIsDeleting={setIsDeleting} comment={comment} deleteComment={deleteComment}/>
       }
       
     </>
