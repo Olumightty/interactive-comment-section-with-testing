@@ -97,13 +97,19 @@ const addComment = (id: number, content: string, replyingTo: string) => {
  }
 
  const deleteComment = (id: number) => {
-  const updateComment = comments?.map((comment) => {
-    const updateReply = comment.replies?.filter((reply) => {
-      return reply.id != id
-    })
-    comment.replies = updateReply
-    return comment
+  let updateComment
+  updateComment = comments?.filter((comment) => {
+    return comment.id != id
   })
+  if(updateComment.length == comments?.length){
+    updateComment = comments?.map((comment) => {
+      const updateReply = comment.replies?.filter((reply) => {
+        return reply.id != id
+      })
+      comment.replies = updateReply
+      return comment
+    })
+  }
   setComments(updateComment)
  }
 
@@ -127,7 +133,7 @@ const addComment = (id: number, content: string, replyingTo: string) => {
 
   return (
     <main className='h-full relative w-full flex justify-center items-center px-5 sm:px-10 lg:px-20 xl:px-[25vw] mb-10'>
-      <div aria-hidden='true'>
+      <div>
         <CommentWrapper comments={comments} addComment={addComment} voteComment={voteComment} deleteComment = {deleteComment} editComment={editComment}/>
       </div>
       

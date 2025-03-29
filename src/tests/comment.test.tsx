@@ -3,7 +3,7 @@ import Comment from '../components/Comment'
 import { CommentProps } from '../App'
 import userEvent from '@testing-library/user-event'
 
-const sampleComment : CommentProps = {
+export const sampleComment : CommentProps = {
     id: 1,
     content: 'comment content',
     createdAt: 'comment date',
@@ -121,7 +121,7 @@ describe('Comment', () => {
 
     })
 
-    it('should upvote and downvote', async() => {
+    it('should run upvote and downvote function', async() => {
         const mockVoteComment = vi.fn()
         render(<Comment 
             comment={sampleComment} 
