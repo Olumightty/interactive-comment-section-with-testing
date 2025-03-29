@@ -25,6 +25,7 @@ export interface DataProps{
   currentUser: UserProps;
   comments: CommentProps[]
 }
+localStorage.setItem('user', JSON.stringify(data.currentUser))
 
 const App = () => {
  const [comments, setComments] = useState<CommentProps[]>(() => {
@@ -34,7 +35,7 @@ const App = () => {
  })
 
  useEffect(() => {
-  localStorage.setItem('user', JSON.stringify(data.currentUser))
+  
  }, [])
 
  useEffect(() => {
