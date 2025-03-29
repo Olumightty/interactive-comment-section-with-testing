@@ -17,7 +17,7 @@ describe('group', () => {
 
     it('should show the score', async() => {
         render(<VoteButton score={1} onVote={vi.fn()}/>)
-        const score = screen.getByRole('voting-score')
+        const score = screen.getByTestId('voting-score')
         expect(score).toBeInTheDocument()
     })
 

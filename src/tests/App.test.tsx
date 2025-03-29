@@ -19,7 +19,7 @@ describe('App', () => {
 
         const pluses = screen.getAllByAltText('plus') //there would be twoo pluses due to the data provided
         const minuses = screen.getAllByAltText('minus')
-        const scores = screen.getAllByRole('voting-score')
+        const scores = screen.getAllByTestId('voting-score')
         await userEvent.click(pluses[0])
         expect(scores[0]).toHaveTextContent((sampleComment.score + 1).toString())
         await userEvent.click(minuses[0])

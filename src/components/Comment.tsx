@@ -37,7 +37,7 @@ const Comment = ({comment, addComment, voteComment, deleteComment, editComment}:
   }
   return (
     <>
-      <div role="comment" className="p-5 flex flex-col-reverse md:flex-row relative  gap-5 items-center bg-(--White) rounded-lg mt-5">
+      <div className="p-5 flex flex-col-reverse md:flex-row relative  gap-5 items-center bg-(--White) rounded-lg mt-5">
           <VoteButton onVote={handleVote} score={comment.score}/>
           <article className="w-full">
             <div className="flex justify-between p">
