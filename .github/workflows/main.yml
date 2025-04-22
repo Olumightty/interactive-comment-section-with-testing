@@ -1,0 +1,26 @@
+
+name: Run Our Tests
+
+on: 
+  workflow_dispatch
+
+jobs:
+
+  build: 
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check Repo
+      uses: actions/checkout@v4.2.2
+      
+    - name: Setup Node js
+      uses: actions/setup-node@v3.9.1
+      with:
+        node-version: 18.x
+        
+    - name: Install Dependencies
+      run: 
+        npm install
+    - name: Run Tests  
+      run: 
+        npm test
+    
