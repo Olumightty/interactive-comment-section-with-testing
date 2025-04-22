@@ -18,7 +18,8 @@ jobs:
         node-version: 22.x
         
     - name: Install Dependencies
-      run: 
+      run: |
+        npm install -g pnpm@latest-10
         pnpm install
     - name: Run Tests  
       run: 
