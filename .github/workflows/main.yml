@@ -18,7 +18,8 @@ jobs:
         node-version: 18.x
         
     - name: Install Dependencies
-      run: 
+      run: |
+        rm -rf node_modules package-lock.json
         npm install
     - name: Run Tests  
       run: 
